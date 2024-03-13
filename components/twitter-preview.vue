@@ -54,7 +54,7 @@ const getImageUrl = () => {
         margin: 0;
         color: #9e9e9e;
         font-family: Inter;
-        font-size: 13px;
+        font-size: 16px;
         /* text-transform: uppercase; */
     }
     .page-title {

@@ -51,7 +51,8 @@ const parseMetaData = async () => {
 
     // Update the input fields with the obtained values
     titleInput.value = metaTags && metaTags["og:title"] ? metaTags["og:title"] : "";
-    urlInput.value = metaTags && metaTags["og:url"] ? metaTags["og:url"] : "";
+    const url = new URL(metaTags && metaTags["og:url"] ? metaTags["og:url"] : "");
+    urlInput.value = url.hostname;
     descriptionInput.value = metaTags && metaTags["og:description"] ? metaTags["og:description"] : "";
     imageInput.value = metaTags && metaTags["og:image"] ? metaTags["og:image"] : "";
   } catch (error) {
