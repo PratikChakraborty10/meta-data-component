@@ -9,6 +9,8 @@
     <button @click="parseMetaData" :class="{ 'loading': loading }" class="parse-button">
       {{ loading ? 'Loading...' : 'Parse' }}
     </button>
+    <button @click="parseMetaDataTest">Passs</button>
+    {{ myData }}
   </div>
 
   <div class="div-holder">
@@ -26,6 +28,14 @@ import axios from "axios"
 import FacebookPreview from "./facebook-preview.vue";
 import TwitterPreview from "./twitter-preview.vue";
 import { ref, watchEffect } from "vue";
+import fetchHeadTags from 'head-meta';
+
+const myData = ref(null)
+// fetchHeadTags('https://pratikchakraborty.in')
+//     .then(tags => console.log(tags, "sdk"))
+//     .catch(error => console.error(error));
+
+
 
 const loading = ref(false);
 
@@ -78,6 +88,16 @@ watchEffect(() => {
     image: imageInput.value,
   };
 });
+
+const parseMetaDataTest = async () => {
+  try {
+    const tags = await fetchHeadTags('https://www.pratikchakraborty.in/');
+    console.log('tags', tags);
+    myData.value = tags;
+  } catch (error) {
+    console.error('Error fetching meta data:', error);
+  }
+};
 </script>
 
 <style scoped>
